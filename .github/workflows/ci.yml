@@ -7,7 +7,10 @@ on:
       - 'bugfix/**'
       - 'chore/**'
       - main  #อย่าลืมลบกรณีใช้งานจริง
-  
+  pull_request:
+    branches:
+      - main
+      
 jobs:
   lint-job:
     runs-on: ubuntu-latest
@@ -56,10 +59,10 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
-      - name: Set Nodejs version to ${{ matrix.node-version}}
+      - name: Set Nodejs version to ${{ matrix.node-version}}   # เรียกใช้แบบที่ 1
         uses: actions/setup-node@v6
         with:
-          node-version: ${{ matrix['node-version'] }}
+          node-version: ${{ matrix['node-version'] }}  # เรียกใช้แบบที่ 2
           cache: 'npm'
       
       - name: Install dependencies
